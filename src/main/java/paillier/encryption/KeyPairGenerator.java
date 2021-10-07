@@ -10,73 +10,15 @@ import java.util.Random;
  *
  * @see KeyPair
  */
-public class KeyPairBuilder {
+public class KeyPairGenerator {
 
     private int bits = 1024;
 
     private int certainty = 0;
 
-    private Random rng;
+    private Random rng = new SecureRandom();
 
-    private BigInteger upperBound;
-
-    /**
-     * Sets the size of the key to be created.
-     * <p>
-     * The default size is 1024 bits.
-     *
-     * @param bits The size of the key in bits.
-     * @return This instance of KeyPairBuilder for method chaining.
-     */
-    public KeyPairBuilder bits(int bits) {
-        this.bits = bits;
-        return this;
-    }
-
-    /**
-     * See {@link BigInteger#BigInteger(int, int, Random)} for more details.
-     * <p>
-     * The default value is 0.
-     *
-     * @return This instance of KeyPairBuilder for method chaining.
-     */
-    public KeyPairBuilder certainty(int certainty) {
-        this.certainty = certainty;
-        return this;
-    }
-
-    /**
-     * Sets the random number generator that is used for the generation of
-     * internally needed prime numbers.
-     * <p>
-     * The default is {@link SecureRandom}.
-     * <p>
-     * <b>Warning:</b>
-     * The change of this value affects the security of the whole cryptographic
-     * system.
-     *
-     * @param rng The random number generator that should be used instead of
-     *            {@link SecureRandom}.
-     * @return This instance of KeyPairBuilder for method chaining.
-     */
-    public KeyPairBuilder randomNumberGenerator(Random rng) {
-        this.rng = rng;
-        return this;
-    }
-
-    /**
-     * Sets an upper bound that is used for decrypting ciphertexts representing a negative value.
-     * <p>
-     * In most cases the upper bound should be the same as of the underlying number system -
-     * for example {@link Integer#MAX_VALUE}.
-     *
-     * @param b The upper bound.
-     * @return This instance of KeyPairBuilder for method chaining.
-     */
-    public KeyPairBuilder upperBound(BigInteger b) {
-        this.upperBound = b;
-        return this;
-    }
+    private BigInteger upperBound = BigInteger.valueOf(Long.MAX_VALUE);
 
     /**
      * Creates a pair of associated public and private keys.
@@ -84,10 +26,6 @@ public class KeyPairBuilder {
      * @return The pair of associated public and private keys.
      */
     public KeyPair generateKeyPair() {
-        if (rng == null) {
-            rng = new SecureRandom();
-        }
-
         // pick two large prime numbers randomly and independently
         BigInteger p, q;
         int length = bits / 2;

@@ -1,7 +1,7 @@
 package service;
 
 import paillier.encryption.KeyPair;
-import paillier.encryption.KeyPairBuilder;
+import paillier.encryption.KeyPairGenerator;
 import paillier.encryption.PublicKey;
 
 import java.math.BigInteger;
@@ -14,10 +14,8 @@ public class PaillierCryptoSystem {
     private KeyPair keyPair;
     private PublicKey publicKey;
 
-    public PaillierCryptoSystem(Long upperBound) {
-        keyPair = new KeyPairBuilder()
-                .upperBound(BigInteger.valueOf(upperBound))
-                .generateKeyPair();
+    public PaillierCryptoSystem() {
+        keyPair = new KeyPairGenerator().generateKeyPair();
         publicKey = keyPair.getPublicKey();
 
     }

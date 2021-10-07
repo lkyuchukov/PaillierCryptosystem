@@ -15,7 +15,7 @@ class PaillierCryptoSystemTest {
 
     @BeforeEach
     void setUp() {
-        paillierCryptoSystem = new PaillierCryptoSystem(Long.MAX_VALUE);
+        paillierCryptoSystem = new PaillierCryptoSystem();
     }
 
     @Test

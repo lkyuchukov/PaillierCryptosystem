@@ -27,8 +27,7 @@ public class KeyPair {
      * Decrypts the given ciphertext.
      *
      * @param c The ciphertext that should be decrypted.
-     * @return The corresponding plaintext. If an upper bound was given to {@link KeyPairBuilder},
-     * the result can also be negative. See {@link KeyPairBuilder#upperBound(BigInteger)} for details.
+     * @return The corresponding plaintext.
      */
     public final BigInteger decrypt(BigInteger c) {
         BigInteger n = publicKey.getN();
