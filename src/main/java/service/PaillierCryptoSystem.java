@@ -32,7 +32,7 @@ public class PaillierCryptoSystem {
      * When two ciphertexts are multiplied, the result decrypts to the sum of their plaintexts.
      * @param encryptedA First Ciphertext
      * @param encryptedB Second Ciphertext
-     * @return The sum of the plaintext values of the encrypted numbers.
+     * @return The encrypted sum of the plaintext values.
      */
     public BigInteger add(BigInteger encryptedA, BigInteger encryptedB) {
         return encryptedA.multiply(encryptedB).mod(publicKey.getNSquared());
@@ -42,7 +42,7 @@ public class PaillierCryptoSystem {
      * When a ciphertext is raised to the power of a plaintext, the result decrypts to the product of the two plaintexts.
      * @param encryptedValue Ciphertext
      * @param constant Constant value
-     * @return the product of the two plaintexts
+     * @return The encrypted product of the plaintext values.
      */
     public BigInteger multiplyWithConstant(BigInteger encryptedValue, BigInteger constant) {
         if (constant.compareTo(BigInteger.ZERO) == 0) {
